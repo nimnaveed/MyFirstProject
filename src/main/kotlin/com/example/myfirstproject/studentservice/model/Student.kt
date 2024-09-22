@@ -15,7 +15,7 @@ data class Student(
     @Column(nullable = false)
     val age: Int,
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "institute_id", referencedColumnId = "id", nullable = false)  // Explicit foreign key column
+    @ManyToOne
+    @JoinColumn(name = "institute_id", nullable = false)
     val institute: Institute
 )
