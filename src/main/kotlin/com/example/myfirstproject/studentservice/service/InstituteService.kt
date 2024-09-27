@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service
 @Service
 class InstituteService(private val instituteRepository: InstituteRepository) {
 
-    fun getAllInstitutes(): List<Institute> = instituteRepository.findAll()
+    fun getAllInstitutes(): List<Institute>{
+        return instituteRepository.findAll()
+    }
 
     fun saveInstitute(institute: Institute): Institute = instituteRepository.save(institute)
 

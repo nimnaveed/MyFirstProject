@@ -37,36 +37,15 @@ class StudentController(private val studentService: StudentService) {
         return ResponseEntity(HttpStatus.NO_CONTENT)
     }
 
-    // Add the updateStudentAge method
-    @PutMapping("/{id}/age")
-    fun updateStudentAge(@PathVariable id: Long, @RequestBody updatedStudent: Student): ResponseEntity<Student> {
+    @PutMapping("/{id}/dateOfBirth")
+    fun updateStudentDateOfBirth(@PathVariable id: Long, @RequestBody updatedStudent: Student): ResponseEntity<Student> {
         val student = studentService.getStudentById(id)
         return if (student != null) {
-            val updated = student.copy(age = updatedStudent.age)
+            val updated = student.copy(dateOfBirth = updatedStudent.dateOfBirth)
             studentService.saveStudent(updated)
             ResponseEntity(updated, HttpStatus.OK)
         } else {
             ResponseEntity(HttpStatus.NOT_FOUND)
         }
     }
-
-    @PatchMapping("/{id}")
-    fun updateStudent(@PathVariable id: Long, @RequestBody updatedFields: Map<String, Any>): ResponseEntity<Student> {
-        val student = studentService.getStudentById(id)
-        return if (student != null) {
-            // Create an updated student by applying changes from the request body
-            val updated = student.copy(
-                name = (updatedFields["name"] as? String)?.takeIf { it.isNotBlank() } ?: student.name,
-                age = (updatedFields["age"] as? Int) ?: student.age
-            )
-            // Save the updated student
-            studentService.saveStudent(updated)
-            ResponseEntity(updated, HttpStatus.OK)
-        } else {
-            ResponseEntity(HttpStatus.NOT_FOUND)
-        }
-    }
-
-
-
 }

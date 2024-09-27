@@ -1,6 +1,7 @@
 package com.example.myfirstproject.studentservice.model
 
 import jakarta.persistence.*
+import java.util.*
 
 @Entity
 @Table(name = "institutes")
@@ -25,6 +26,9 @@ data class Institute(
     val zipcode: Int,
 
     @Column(nullable = false)
-    val state: String
+    val state: String,
+
+    @OneToMany(mappedBy = "institute", fetch = FetchType.LAZY)
+    val students: List<Student> = emptyList() // One-to-many relationship
 
 )

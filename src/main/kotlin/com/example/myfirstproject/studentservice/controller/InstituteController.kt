@@ -31,6 +31,12 @@ class InstituteController(private val instituteService: InstituteService) {
         }
     }
 
+    @GetMapping("/with-students")
+    fun getInstitutesWithStudents(): ResponseEntity<List<Institute>> {
+        val institutes = instituteService.getAllInstitutes() // Fetch all institutes
+        return ResponseEntity(institutes, HttpStatus.OK)
+    }
+
     @DeleteMapping("/{id}")
     fun deleteInstitute(@PathVariable id: Long): ResponseEntity<Void> {
         instituteService.deleteInstitute(id)
