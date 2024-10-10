@@ -28,6 +28,7 @@ repositories {
 
 dependencies {
     implementation("org.postgresql:postgresql:42.6.0")
+    implementation("org.hibernate.common:hibernate-commons-annotations:6.0.6.Final")
     implementation("org.springframework.boot:spring-boot-devtools")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
